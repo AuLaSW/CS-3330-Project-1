@@ -4,7 +4,8 @@
 class Employee {
 public:
     // Constructor
-    Employee(int, std::string, std::string, std::string, std::string, double);
+    Employee(const int, const std::string, const std::string, 
+             const std::string, const std::string, const double);
 
     // Destructor
     ~Employee();
@@ -13,7 +14,7 @@ public:
     void print() const;
 
 private:
-    int employeeID;
+    int employeeId;
     std::string firstName;
     std::string lastName;
     std::string phoneNumber;
