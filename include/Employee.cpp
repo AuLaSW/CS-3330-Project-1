@@ -19,6 +19,10 @@ Employee::Employee(const int         employeeId,
 Employee::~Employee() {
 }
 
+int Employee::getEmployeeId() const {
+    return this->employeeId;
+}
+
 void Employee::print() const {
     // Output the employee object in a user-friendly way.
     std::cout << "Employee: " << std::endl;

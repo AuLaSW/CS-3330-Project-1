@@ -1,6 +1,9 @@
-#define EMPLOYEE
+#ifndef EMPLOYEE
+#define EMPLOYEE 
 #include <string>
 
+// This is a simple class that handles the Employee objects we will
+// be using.
 class Employee {
 public:
     // Constructor
@@ -9,6 +12,9 @@ public:
 
     // Destructor
     ~Employee();
+
+    // Accessor
+    int getEmployeeId() const;
 
     // print method;
     void print() const;
@@ -21,3 +27,5 @@ private:
     std::string emailAddress;
     double salary;
 };
+
+#endif /* ifndef EMPLOYEE */
