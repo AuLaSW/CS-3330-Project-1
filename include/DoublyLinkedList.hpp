@@ -2,6 +2,7 @@
 #define DOUBLE_LINK_LIST 
 
 #include "Employee.hpp"
+#include "Node.hpp"
 
 /*
  * The DoublyLinkedList class creates a doubly-linked list
@@ -10,10 +11,10 @@
  * class within the main class.
  */
 class DoublyLinkedList {
-    template<typename T> class Node;
 public:
     // constructors
     DoublyLinkedList();
+    DoublyLinkedList(const DoublyLinkedList&);
     
     // destructors
     ~DoublyLinkedList();
@@ -26,48 +27,43 @@ public:
      */
 
     // get the front node
-    const Node<Employee>& getFront() const;
+    const Node& getFront() const;
 
     // get the back node
-    const Node<Employee>& getBack() const;
+    const Node& getBack() const;
 
     // get the n'th node in the list
-    const Node<Employee>& getNode(int) const;
+    const Node& getNode(int);
 
     // get the element of the given node
-    const Employee getElement(Node<Employee>) const;
+    const Employee& getElement(const Node&) const;
     
     // get the element of the n'th node
-    const Employee getElement(int) const;
+    const Employee& getElement(int) const;
 
     /*
      * Manipulators
      */
 
     // generic node removal
-    void removeNode();
+    void removeNode(const int);
     
     // generic node add
-    void addNode(Employee);
+    void addNode(Employee&);
 
 private:
     // Class for holding the nodes in the list
-    template<typename T> 
-    class Node {
-    private:
-        Node* next;
-        Node* prev;
-        T element;
-    };
 
     // the header element of the list
-    Node<Employee>* header;
+    Node* header;
     
     // the tailer element of the list
-    Node<Employee>* trailer;
+    Node* trailer;
 
     // the number of elements in the list
     int length;
+
+    Node& getNodeAt(int);
 };
 
 #endif /* ifndef DOUBLE_LINK_LIST */
