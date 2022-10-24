@@ -85,6 +85,7 @@ const Node& DoublyLinkedList::getNode(int index) {
     return *(temp);
 }
 
+// get the n'th node at the list and let the node be editable
 Node& DoublyLinkedList::getNodeAt(int index) {
     // if the index is outside of the range for valid indexes,
     // then throw an error.
@@ -152,10 +153,16 @@ void DoublyLinkedList::addNode(Employee& employee) {
     Node *temp = this->header->next;
     for (int i = 0; i < this->length; i++) {
         if (employee.getEmployeeId() > temp->element->getEmployeeId()) {
-            Node *newNode = new Node(employee, *(temp->next), *(temp->prev));
+            // create a new node. Set the next node to the temp node
+            // and the previous node to the node after temp
+            Node *newNode = new Node(employee, *(temp), *(temp->prev));
+            // the previous node should point to newNode
             temp->prev->next = newNode;
-            temp->next->prev = newNode;
+            // the temp node should point back to newNode
+            temp->prev = newNode;
             length++;
+            // break the for loop so we don't have to keep doing it.
+            i = this->length;
         }
     }
 }
