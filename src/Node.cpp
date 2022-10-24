@@ -1,4 +1,4 @@
-#include "Node.hpp"
+#include "../include/Node.hpp"
 
 Node::Node() {
     this->next = nullptr;

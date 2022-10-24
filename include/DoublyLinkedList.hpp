@@ -41,7 +41,7 @@ public:
     const Employee& getElement(const Node&) const;
     
     // get the element of the n'th node
-    const Employee& getElement(int) const;
+    const Employee& getElement(int);
 
     /*
      * Manipulators

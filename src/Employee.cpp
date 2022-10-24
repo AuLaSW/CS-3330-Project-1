@@ -1,4 +1,4 @@
-#include "Employee.hpp"
+#include "../include/Employee.hpp"
 #include <iostream>
 #include <string>
 
@@ -36,19 +36,13 @@ void Employee::print() const {
     // Output the employee object in a user-friendly way.
     std::cout << "Employee: " << std::endl;
 
-    std::cout << "ID: "<< '\r' + '\t' + '\t' 
-              << this->employeeId << std::endl;
+    std::cout << "ID: "<< this->employeeId << std::endl;
 
-    std::cout << "Name: "<< '\r' + '\t' + '\t' 
-              << this->firstName << " "
-              << this->lastName << std::endl;
+    std::cout << "Name: "<< this->firstName << " " << this->lastName << std::endl;
 
-    std::cout << "Phone Number: "<< '\r' + '\t' + '\t' 
-              << '\t' << this->phoneNumber << std::endl;
+    std::cout << "Phone Number: "<< this->phoneNumber << std::endl;
 
-    std::cout << "Email Address : "<< '\r' + '\t' + '\t' 
-              << '\t' << this->emailAddress << std::endl;
+    std::cout << "Email Address : "<< this->emailAddress << std::endl;
 
-    std::cout << "Salary: "<< '\r' + '\t' + '\t' 
-              << '\t' << this->salary << std::endl;
+    std::cout << "Salary: "<< this->salary << std::endl;
 }

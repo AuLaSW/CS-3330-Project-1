@@ -1,7 +1,7 @@
 #include <exception>
 #include <stdexcept>
-#include "DoublyLinkedList.hpp"
-#include "Employee.hpp"
+#include "../include/DoublyLinkedList.hpp"
+#include "../include/Employee.hpp"
 
 // Default constructor
 DoublyLinkedList::DoublyLinkedList() {
@@ -120,10 +120,10 @@ const Employee& DoublyLinkedList::getElement(const Node& node) const {
 }
 
 // get the element of the n'th node
-const Employee& DoublyLinkedList::getElement(int index) const {
+const Employee& DoublyLinkedList::getElement(int index) {
     // get the element with the index and set the Employee
     // element to the temp variable here
-    const Employee *temp = &(this->getElement(index));
+    const Employee *temp = this->getNodeAt(index).element;
 
     return *temp;
 }
@@ -155,18 +155,33 @@ void DoublyLinkedList::removeNode(const int index) {
 // generic node add
 void DoublyLinkedList::addNode(Employee& employee) {
     Node *temp = this->header->next;
-    for (int i = 0; i < this->length; i++) {
-        if (employee.getEmployeeId() > temp->element->getEmployeeId()) {
-            // create a new node. Set the next node to the temp node
-            // and the previous node to the node after temp
-            Node *newNode = new Node(employee, *(temp), *(temp->prev));
-            // the previous node should point to newNode
-            temp->prev->next = newNode;
-            // the temp node should point back to newNode
-            temp->prev = newNode;
-            length++;
-            // break the for loop so we don't have to keep doing it.
-            i = this->length;
+    if (this->length == 0) {
+        // create a new node. Set the next node to the temp node
+        // and the previous node to the node after temp
+        Node *newNode = new Node(employee, *(temp), *(temp->prev));
+        // the previous node should point to newNode
+        temp->prev->next = newNode;
+        // the temp node should point back to newNode
+        temp->prev = newNode;
+
+        this->length++;
+    }
+    else {
+        for (int i = 0; i < this->length; i++) {
+            if (employee.getEmployeeId() > temp->element->getEmployeeId()) {
+                // create a new node. Set the next node to the temp node
+                // and the previous node to the node after temp
+                Node *newNode = new Node(employee, *(temp), *(temp->prev));
+                // the previous node should point to newNode
+                temp->prev->next = newNode;
+                // the temp node should point back to newNode
+                temp->prev = newNode;
+
+                this->length++;
+                // break the for loop so we don't have to keep doing it.
+                i = this->length;
+            }
+            temp = temp->next;
         }
     }
 }
