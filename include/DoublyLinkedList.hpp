@@ -25,6 +25,8 @@ public:
     /*
      * Accessors
      */
+    // get the length of the list
+    const int size() const;
 
     // get the front node
     const Node& getFront() const;

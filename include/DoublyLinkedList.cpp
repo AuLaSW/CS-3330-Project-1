@@ -66,6 +66,10 @@ bool DoublyLinkedList::empty() const {
  * Accessors
  */
 
+// get the length of the list
+const int DoublyLinkedList::size() const {
+    return this->length;
+}
 // get the front node
 const Node& DoublyLinkedList::getFront() const {
     Node const * temp = this->header;

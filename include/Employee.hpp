@@ -7,6 +7,8 @@
 class Employee {
 public:
     // Constructor
+    Employee();
+
     Employee(const int, const std::string, const std::string, 
              const std::string, const std::string, const double);
 

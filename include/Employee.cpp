@@ -1,6 +1,15 @@
 #include "Employee.hpp"
 #include <iostream>
-#include <ostream>
+#include <string>
+
+Employee::Employee() {
+    this->employeeId = 0;
+    this->firstName = "";
+    this->lastName = "";
+    this->phoneNumber = "";
+    this->emailAddress = "";
+    this->salary = 0;
+}
 
 // Employee constructor, uses a member initalization list
 // to instantaite the fields in the class
