@@ -19,7 +19,7 @@ Employee::Employee(const int         employeeId,
                    const std::string phoneNumber, 
                    const std::string emailAddress, 
                    const double      salary) :
-    employeeId(employeeId), firstName(firstName),
+    employeeId(employeeId), firstName(firstName), lastName(lastName),
     phoneNumber(phoneNumber), emailAddress(emailAddress),
     salary(salary) 
 { }
