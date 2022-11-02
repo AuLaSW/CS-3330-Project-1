@@ -168,7 +168,7 @@ void DoublyLinkedList::addNode(Employee& employee) {
     }
     else {
         for (int i = 0; i < this->length; i++) {
-            if (employee.getEmployeeId() > temp->element->getEmployeeId()) {
+            if (employee.getEmployeeId() < temp->element->getEmployeeId()) {
                 // create a new node. Set the next node to the temp node
                 // and the previous node to the node after temp
                 Node *newNode = new Node(employee, *(temp), *(temp->prev));
