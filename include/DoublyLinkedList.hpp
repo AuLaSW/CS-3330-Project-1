@@ -1,3 +1,4 @@
+// Austin Swanlaw
 #ifndef DOUBLE_LINK_LIST
 #define DOUBLE_LINK_LIST 
 
