@@ -29,8 +29,24 @@ Employee::~Employee() {
 }
 
 // get the employee id
-int Employee::getEmployeeId() const {
+const int Employee::getId() const {
     return this->employeeId;
+}
+
+const std::string Employee::getName() const {
+    return this->firstName + " " + this->lastName;
+}
+
+const std::string Employee::getPhoneNumber() const {
+    return this->phoneNumber; 
+}
+
+const std::string Employee::getEmailAddress() const {
+    return this->emailAddress;
+}
+
+const int Employee::getSalary() const {
+    return this->salary;
 }
 
 void Employee::print() const {
@@ -39,7 +55,7 @@ void Employee::print() const {
 
     std::cout << "ID: "<< this->employeeId << std::endl;
 
-    std::cout << "Name: "<< this->lastName << " " << this->lastName << std::endl;
+    std::cout << "Name: "<< this->firstName << " " << this->lastName << std::endl;
 
     std::cout << "Phone Number: "<< this->phoneNumber << std::endl;
 
@@ -53,7 +69,6 @@ void Employee::print() const {
 Employee& Employee::getEmployeeFromString(std::string &str) {
     std::string delim = " ";
     std::string *empArr = new std::string[NUM_OF_PROPERTIES];
-    std::string output;
 
     int count = 0;
     
@@ -69,12 +84,12 @@ Employee& Employee::getEmployeeFromString(std::string &str) {
         else {
             str.erase();
         }
+        
         // add output to array
         count++;
-
-        std::cout << empArr[LAST_NAME] << std::endl;
     }
 
+    // return a new employee object
     return *(new Employee(
                           std::stoi(empArr[ID]),
                           empArr[FIRST_NAME],

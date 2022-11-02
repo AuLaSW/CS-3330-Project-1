@@ -15,11 +15,6 @@ int main(int argc, char *argv[])
     // the linked list
     DoublyLinkedList * const employeeList = new DoublyLinkedList();
 
-    // a temporary employee variable to hold the infomration
-    Employee *employee = nullptr;
-
-    int count = 0;
-
     // loop through the file to get the employee information
     while (getline(myfile, line)) {
         // create an employee from the line input then
@@ -27,7 +22,7 @@ int main(int argc, char *argv[])
         employeeList->addNode(Employee::getEmployeeFromString(line));
     }
 
-
+    // close the file
     myfile.close();
 
     // loop through the list to print employees.
