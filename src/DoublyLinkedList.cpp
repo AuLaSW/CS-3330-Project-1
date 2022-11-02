@@ -1,3 +1,4 @@
+// Austin Swanlaw
 #include <exception>
 #include <stdexcept>
 #include "../include/DoublyLinkedList.hpp"
@@ -5,8 +6,8 @@
 
 // Default constructor
 DoublyLinkedList::DoublyLinkedList() {
-    this->header = new Node();
-    this->trailer = new Node();
+    this->header = new Node<Employee>();
+    this->trailer = new Node<Employee>();
     this->header->next = this->trailer;
     this->header->prev = nullptr;
     this->trailer->next = nullptr;
@@ -17,17 +18,17 @@ DoublyLinkedList::DoublyLinkedList() {
 // copy constructor
 DoublyLinkedList::DoublyLinkedList(const DoublyLinkedList& list) {
     // copy the header and trailer
-    this->header = new Node(*list.header->element);
-    this->trailer = new Node(*list.trailer->element);
+    this->header = new Node<Employee>(*list.header->element);
+    this->trailer = new Node<Employee>(*list.trailer->element);
     this->length = list.length;
 
     // we are creating two temporary nodes to loop over
     // all of the nodes in the list we are copying
     // and then point them to the elements
-    Node *thisTemp = this->header->next;
-    Node *listTemp = list.header->next;
+    Node<Employee> *thisTemp = this->header->next;
+    Node<Employee> *listTemp = list.header->next;
     for (int i = 0; i < list.length; i++) {
-        thisTemp = new Node(*listTemp->element);
+        thisTemp = new Node<Employee>(*listTemp->element);
         listTemp = listTemp->next;
         thisTemp = thisTemp->next;
     }
@@ -35,7 +36,7 @@ DoublyLinkedList::DoublyLinkedList(const DoublyLinkedList& list) {
 
 DoublyLinkedList::~DoublyLinkedList() {
     // temp variable to store nodes while we delete
-    Node *temp = nullptr;
+    Node<Employee> *temp = nullptr;
 
     // loop through until all of the nodes are deleted
     while (!(this->empty())) {
@@ -71,26 +72,26 @@ const int DoublyLinkedList::size() const {
     return this->length;
 }
 // get the front node
-const Node& DoublyLinkedList::getFront() const {
-    Node const * temp = this->header;
+const Node<Employee>& DoublyLinkedList::getFront() const {
+    Node<Employee> const * temp = this->header;
     return *temp;
 }
 
 // get the back node
-const Node& DoublyLinkedList::getBack() const {
-    Node const * temp = this->trailer;
+const Node<Employee>& DoublyLinkedList::getBack() const {
+    Node<Employee> const * temp = this->trailer;
     return *temp;
 }
 
 // get the n'th node in the list
-const Node& DoublyLinkedList::getNode(int index) {
-    const Node * const temp = &(this->getNodeAt(index));
+const Node<Employee>& DoublyLinkedList::getNode(int index) {
+    const Node<Employee> * const temp = &(this->getNodeAt(index));
 
     return *(temp);
 }
 
 // get the n'th node at the list and let the node be editable
-Node& DoublyLinkedList::getNodeAt(int index) {
+Node<Employee>& DoublyLinkedList::getNodeAt(int index) {
     // if the index is outside of the range for valid indexes,
     // then throw an error.
     if (index >= this->length || index < 0) {
@@ -102,7 +103,7 @@ Node& DoublyLinkedList::getNodeAt(int index) {
     // node, then loop and set temp to the next node until the next
     // node is the node we are looking for.
     int i = 0;
-    Node *temp = this->header->next;
+    Node<Employee> *temp = this->header->next;
     while (i < index) {
         temp = temp->next;
         i++;
@@ -112,20 +113,15 @@ Node& DoublyLinkedList::getNodeAt(int index) {
 }
 
 // get the element of the given node
-const Employee& DoublyLinkedList::getElement(const Node& node) const {
-    // set a temp employee variable
-    const Employee temp = *node.element;
-
-    return temp;
+const Employee& DoublyLinkedList::getElement(const Node<Employee>& node) const {
+    return *node.element;
 }
 
 // get the element of the n'th node
 const Employee& DoublyLinkedList::getElement(int index) {
     // get the element with the index and set the Employee
     // element to the temp variable here
-    const Employee *temp = this->getNodeAt(index).element;
-
-    return *temp;
+    return *this->getNodeAt(index).element;
 }
 
 /*
@@ -135,7 +131,7 @@ const Employee& DoublyLinkedList::getElement(int index) {
 // generic node removal
 void DoublyLinkedList::removeNode(const int index) {
     try {
-        Node *old = &(this->getNodeAt(index));
+        Node<Employee> *old = &(this->getNodeAt(index));
 
         // take the previous node's next and point it to the next node
         old->prev->next = old->next;
@@ -154,11 +150,11 @@ void DoublyLinkedList::removeNode(const int index) {
 
 // generic node add
 void DoublyLinkedList::addNode(Employee& employee) {
-    Node *temp = this->header->next;
+    Node<Employee> *temp = this->header->next;
     if (this->length == 0) {
         // create a new node. Set the next node to the temp node
         // and the previous node to the node after temp
-        Node *newNode = new Node(employee, *(temp), *(temp->prev));
+        Node<Employee> *newNode = new Node<Employee>(employee, *(temp), *(temp->prev));
         // the previous node should point to newNode
         temp->prev->next = newNode;
         // the temp node should point back to newNode
@@ -171,7 +167,7 @@ void DoublyLinkedList::addNode(Employee& employee) {
             if (employee.getEmployeeId() < temp->element->getEmployeeId()) {
                 // create a new node. Set the next node to the temp node
                 // and the previous node to the node after temp
-                Node *newNode = new Node(employee, *(temp), *(temp->prev));
+                Node<Employee> *newNode = new Node<Employee>(employee, *(temp), *(temp->prev));
                 // the previous node should point to newNode
                 temp->prev->next = newNode;
                 // the temp node should point back to newNode

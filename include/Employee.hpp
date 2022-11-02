@@ -1,3 +1,4 @@
+// Austin Swanlaw
 #ifndef EMPLOYEE
 #define EMPLOYEE 
 #include <string>

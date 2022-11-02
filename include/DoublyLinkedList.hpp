@@ -1,3 +1,4 @@
+// Austin Swanlaw
 #ifndef DOUBLE_LINK_LIST
 #define DOUBLE_LINK_LIST 
 
@@ -29,16 +30,16 @@ public:
     const int size() const;
 
     // get the front node
-    const Node& getFront() const;
+    const Node<Employee>& getFront() const;
 
     // get the back node
-    const Node& getBack() const;
+    const Node<Employee>& getBack() const;
 
     // get the n'th node in the list
-    const Node& getNode(int);
+    const Node<Employee>& getNode(int);
 
     // get the element of the given node
-    const Employee& getElement(const Node&) const;
+    const Employee& getElement(const Node<Employee>&) const;
     
     // get the element of the n'th node
     const Employee& getElement(int);
@@ -57,15 +58,15 @@ private:
     // Class for holding the nodes in the list
 
     // the header element of the list
-    Node* header;
+    Node<Employee>* header;
     
     // the tailer element of the list
-    Node* trailer;
+    Node<Employee>* trailer;
 
     // the number of elements in the list
     int length;
 
-    Node& getNodeAt(int);
+    Node<Employee>& getNodeAt(int);
 };
 
 #endif /* ifndef DOUBLE_LINK_LIST */
