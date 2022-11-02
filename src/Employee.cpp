@@ -28,6 +28,7 @@ Employee::Employee(const int         employeeId,
 Employee::~Employee() {
 }
 
+// get the employee id
 int Employee::getEmployeeId() const {
     return this->employeeId;
 }
@@ -38,11 +39,48 @@ void Employee::print() const {
 
     std::cout << "ID: "<< this->employeeId << std::endl;
 
-    std::cout << "Name: "<< this->firstName << " " << this->lastName << std::endl;
+    std::cout << "Name: "<< this->lastName << " " << this->lastName << std::endl;
 
     std::cout << "Phone Number: "<< this->phoneNumber << std::endl;
 
     std::cout << "Email Address : "<< this->emailAddress << std::endl;
 
-    std::cout << "Salary: "<< this->salary << std::endl;
+    std::cout << "Salary: "<< "$" << this->salary << std::endl;
+}
+
+// this function takes an inputted line from the Employee
+// file and generates an employee object from it.
+Employee& Employee::getEmployeeFromString(std::string &str) {
+    std::string delim = " ";
+    std::string *empArr = new std::string[NUM_OF_PROPERTIES];
+    std::string output;
+
+    int count = 0;
+    
+    while (count <= 5) {
+        // get the output from the string ready for formating
+        empArr[count] = str.substr(0, str.find(delim));
+        
+        // remove what we just took from the string so we can skip 
+        // over it next time we loop through the string
+        if (str.find(delim)) {
+            str.erase(0, str.find(delim) + delim.length());
+        }
+        else {
+            str.erase();
+        }
+        // add output to array
+        count++;
+
+        std::cout << empArr[LAST_NAME] << std::endl;
+    }
+
+    return *(new Employee(
+                          std::stoi(empArr[ID]),
+                          empArr[FIRST_NAME],
+                          empArr[LAST_NAME],
+                          empArr[PHONE],
+                          empArr[EMAIL],
+                          std::stod(empArr[SALARY])
+                          ));
 }

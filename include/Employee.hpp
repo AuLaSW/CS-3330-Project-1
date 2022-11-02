@@ -18,6 +18,8 @@ public:
     // Accessor
     int getEmployeeId() const;
 
+    static Employee& getEmployeeFromString(std::string&);
+
     // print method;
     void print() const;
 
@@ -28,6 +30,8 @@ private:
     std::string phoneNumber;
     std::string emailAddress;
     double salary;
+
+    enum { ID, FIRST_NAME, LAST_NAME, PHONE, EMAIL, SALARY, NUM_OF_PROPERTIES };
 };
 
 #endif /* ifndef EMPLOYEE */

@@ -114,9 +114,7 @@ Node& DoublyLinkedList::getNodeAt(int index) {
 // get the element of the given node
 const Employee& DoublyLinkedList::getElement(const Node& node) const {
     // set a temp employee variable
-    const Employee temp = *node.element;
-
-    return temp;
+    return *node.element;
 }
 
 // get the element of the n'th node
