@@ -1,5 +1,6 @@
 #include "../include/Employee.hpp"
 #include <iostream>
+#include <iomanip>
 #include <string>
 
 Employee::Employee() {
@@ -61,7 +62,12 @@ void Employee::print() const {
 
     std::cout << "Email Address : "<< this->emailAddress << std::endl;
 
+    // we are setting the precision to show the money value properly.
+    std::cout << std::setprecision(2) << std::fixed;
     std::cout << "Salary: "<< "$" << this->salary << std::endl;
+
+    // create an extra space between employees
+    std::cout << std::endl;
 }
 
 // this function takes an inputted line from the Employee
