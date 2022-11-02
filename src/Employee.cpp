@@ -29,7 +29,7 @@ Employee::~Employee() {
 }
 
 // get the employee id
-const int Employee::getId() const {
+const int Employee::getID() const {
     return this->employeeId;
 }
 

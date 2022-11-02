@@ -16,7 +16,7 @@ public:
     ~Employee();
 
     // Accessor
-    const int getId() const;
+    const int getID() const;
     const std::string getName() const;
     const std::string getPhoneNumber() const;
     const std::string getEmailAddress() const;
