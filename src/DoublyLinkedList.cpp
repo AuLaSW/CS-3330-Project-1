@@ -113,7 +113,6 @@ Node<Employee>& DoublyLinkedList::getNodeAt(int index) {
 }
 
 // get the element of the given node
-const Employee& DoublyLinkedList::getElement(const Node<Employee>& node) const {
     return *node.element;
 }
 
@@ -164,7 +163,7 @@ void DoublyLinkedList::addNode(Employee& employee) {
     }
     else {
         for (int i = 0; i < this->length; i++) {
-            if (employee.getEmployeeId() < temp->element->getEmployeeId()) {
+            if (employee.getID() < temp->element->getID()) {
                 // create a new node. Set the next node to the temp node
                 // and the previous node to the node after temp
                 Node<Employee> *newNode = new Node<Employee>(employee, *(temp), *(temp->prev));

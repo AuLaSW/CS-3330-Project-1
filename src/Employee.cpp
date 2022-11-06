@@ -1,6 +1,7 @@
 // Austin Swanlaw
 #include "../include/Employee.hpp"
 #include <iostream>
+#include <iomanip>
 #include <string>
 
 Employee::Employee() {
@@ -20,7 +21,7 @@ Employee::Employee(const int         employeeId,
                    const std::string phoneNumber, 
                    const std::string emailAddress, 
                    const double      salary) :
-    employeeId(employeeId), firstName(firstName),
+    employeeId(employeeId), firstName(firstName), lastName(lastName),
     phoneNumber(phoneNumber), emailAddress(emailAddress),
     salary(salary) 
 { }
@@ -29,8 +30,25 @@ Employee::Employee(const int         employeeId,
 Employee::~Employee() {
 }
 
-int Employee::getEmployeeId() const {
+// get the employee id
+const int Employee::getID() const {
     return this->employeeId;
+}
+
+const std::string Employee::getName() const {
+    return this->firstName + " " + this->lastName;
+}
+
+const std::string Employee::getPhoneNumber() const {
+    return this->phoneNumber; 
+}
+
+const std::string Employee::getEmailAddress() const {
+    return this->emailAddress;
+}
+
+const int Employee::getSalary() const {
+    return this->salary;
 }
 
 void Employee::print() const {
@@ -45,5 +63,46 @@ void Employee::print() const {
 
     std::cout << "Email Address : "<< this->emailAddress << std::endl;
 
-    std::cout << "Salary: "<< this->salary << std::endl;
+    // we are setting the precision to show the money value properly.
+    std::cout << std::setprecision(2) << std::fixed;
+    std::cout << "Salary: "<< "$" << this->salary << std::endl;
+
+    // create an extra space between employees
+    std::cout << std::endl;
+}
+
+// this function takes an inputted line from the Employee
+// file and generates an employee object from it.
+Employee& Employee::getEmployeeFromString(std::string &str) {
+    std::string delim = " ";
+    std::string *empArr = new std::string[NUM_OF_PROPERTIES];
+
+    int count = 0;
+    
+    while (count <= 5) {
+        // get the output from the string ready for formating
+        empArr[count] = str.substr(0, str.find(delim));
+        
+        // remove what we just took from the string so we can skip 
+        // over it next time we loop through the string
+        if (str.find(delim)) {
+            str.erase(0, str.find(delim) + delim.length());
+        }
+        else {
+            str.erase();
+        }
+        
+        // add output to array
+        count++;
+    }
+
+    // return a new employee object
+    return *(new Employee(
+                          std::stoi(empArr[ID]),
+                          empArr[FIRST_NAME],
+                          empArr[LAST_NAME],
+                          empArr[PHONE],
+                          empArr[EMAIL],
+                          std::stod(empArr[SALARY])
+                          ));
 }
